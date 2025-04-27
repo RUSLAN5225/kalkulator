@@ -19,4 +19,6 @@ kal'kulator-это компьютерное приложение калькул�
 
 https://github.com/RUSLAN5225/kalkulator.git
 
-'''
+```
+
+![image](https://github.com/user-attachments/assets/173c349c-a222-4895-b5f1-48e9bec7c61a)

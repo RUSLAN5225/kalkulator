@@ -23,6 +23,10 @@ class Calculator:
             self.buttons_frame.rowconfigure(x, weight = 1)
             self.buttons_frame.columnconfigure(x, weight=1)
         self.create_equals_buttons()
+        self.create_sqrt_button()
+        self.create_clear_button()
+        self.create_square_button()
+
 
     def run(self):
         self.window.mainloop()
@@ -68,7 +72,7 @@ class Calculator:
         self.total_label.config(text=self.total_expression)
 
     def update_label(self):
-        self.label.config(text=self.current_expression[:11])
+        self.label.config(text=self.current_expression[:48])
 
     def add_to_expression(self, value):
         self.current_expression += str(value)
@@ -97,6 +101,36 @@ class Calculator:
             self.current_expression = "Error"
         finally:
             self.update_label()
+
+    def sqrt(self):
+        self.current_expression = str(eval(f"{self.current_expression}**0.5"))
+        self.update_label()
+
+    def create_sqrt_button(self):
+        button = tk.Button(self.buttons_frame, text="\u221ax", bg="white", fg="black", font=("Arial", 24, "bold"),
+                           borderwidth=0, command=self.sqrt)
+        button.grid(row=0, column=3, sticky=tk.NSEW)
+
+    def clear(self):
+        self.current_expression = ""
+        self.total_expression = ""
+        self.update_label()
+        self.update_total_label()
+
+    def create_clear_button(self):
+        button = tk.Button(self.buttons_frame, text="C", bg="white", fg="black", font=("Arial", 24, "bold"),
+                           borderwidth=0, command=self.clear)
+        button.grid(row=0, column=1, sticky=tk.NSEW)
+
+    def square(self):
+        self.current_expression = str(eval(f"{self.current_expression}**2"))
+        self.update_label()
+
+    def create_square_button(self):
+        button = tk.Button(self.buttons_frame, text="x\u00b2", bg="white", fg="black", font=("Arial", 24, "bold"),
+                           borderwidth=0, command=self.square)
+        button.grid(row=0, column=2, sticky=tk.NSEW)
+
 
 if __name__ == "__main__":
     calc = Calculator()
